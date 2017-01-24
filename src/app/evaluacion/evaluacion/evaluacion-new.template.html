@@ -1,0 +1,22 @@
+<div class="pane padded-more">
+  <strong>Nueva evaluacion</strong>
+  <br>
+  <br>
+  <div *ngFor="let pregunta of preguntas">
+    <strong>{{pregunta.titulo}}</strong>
+    <div [innerHTML]="pregunta.contenido"></div>
+
+    <textarea class="form-control" *ngIf="pregunta.tipo==1 || !pregunta.tipo"></textarea>
+    <div *ngIf="pregunta.tipo==2">
+      <div *ngFor="let opcion of pregunta.opciones">
+        <input type="checkbox">
+        {{opcion}}
+      </div>
+    </div>
+    <hr>
+  </div>
+
+  <div>
+    <button class="btn btn-primary" (click)="guardar()">Enviar</button>
+  </div>
+</div>

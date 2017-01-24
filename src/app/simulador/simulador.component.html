@@ -1,0 +1,29 @@
+<div>
+  <div class="pane-group">
+    <div class="pane padded-more">
+      <div #myDiagramDiv2 style="width:800px; height:500px; background-color: whiteSmoke; margin:auto"></div>
+      <div style="width:800px;background-color: silver; margin:auto">
+        {{temaTutorial}}
+      </div>
+      <div style="text-align:center">
+        <button (click)="iniciar()" class="btn btn-default">Iniciar</button>
+
+        <button (click)="agregarNodo('emisor')" class="btn btn-default">Agregar Emisor</button>
+        <button (click)="agregarNodo('receptor')" class="btn btn-default">Agregar Receptor</button>
+        <button (click)="agregarNodo('repetidor')" class="btn btn-default">Agregar Repetidor</button>
+
+
+        <div *ngIf="dataLinkSelected">
+          <input type="number" (change)="actualizarLink()">
+          <br>
+          <button (click)="eliminarLinkSeleccionado()" class="btn btn-default">Eliminar Link</button>
+        </div>
+
+
+        <button (click)="guardar()" class="btn btn-default">Guardar</button>
+
+        <h1>{{mensaje}}</h1>
+      </div>
+    </div>
+  </div>
+</div>

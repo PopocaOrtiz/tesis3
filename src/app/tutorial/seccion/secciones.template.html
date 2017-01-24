@@ -1,0 +1,87 @@
+<div>
+  <div class="pane-group">
+    <div class="pane sidebar pane-one-fourth" >
+
+      <nav class="nav-group">
+
+        <h5 class="nav-group-title">
+          Secciones
+          <button *ngIf="user" [routerLink]="['new']" class="btn btn-default pull-right">
+            <span class="icon icon-plus"></span>
+            Nueva Seccion
+          </button>
+        </h5>
+
+        <div *ngFor="let seccion of secciones">
+          <span
+            [routerLink]="['view', seccion.id]"
+            (click)="onSelect(seccion)"
+            [class.active]="seccion.id === idSelectedSeccion"
+            class="nav-group-item"
+            style="padding: 6px 10px 6px 25px;">
+          <span class="icon icon-book"></span>
+            {{seccion.titulo}}
+            <br>
+          </span>
+          <div *ngIf="seccion.subSecciones">
+            <div *ngFor="let subSeccion1 of seccion.subSecciones">
+              <span
+                [routerLink]="['view', subSeccion1.id]"
+                (click)="onSelect(subSeccion1)"
+                [class.active]="subSeccion1.id === idSelectedSeccion"
+                class="nav-group-item"
+                style="padding: 6px 10px 6px 50px;">
+                {{subSeccion1.titulo}}
+                <br>
+              </span>
+              <div *ngIf="subSeccion1.subSecciones">
+                <div *ngFor="let subSeccion2 of subSeccion1.subSecciones">
+                  <span
+                    [routerLink]="['view', subSeccion2.id]"
+                    (click)="onSelect(subSeccion2)"
+                    [class.active]="subSeccion2.id === idSelectedSeccion"
+                    class="nav-group-item"
+                    style="padding: 6px 10px 6px 65px;">
+                    {{subSeccion2.titulo}}
+                    <br>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </nav>
+
+
+
+      <!--
+      <li *ngFor="let seccion of secciones">
+        <button class="delete"
+                (click)="delete(seccion); $event.stopPropagation()">x</button>
+      </li>
+
+      <div *ngIf="selectedSeccion">
+        <h2>
+          {{selectedSeccion.titulo | uppercase}} is my hero
+        </h2>
+        <button (click)="gotoDetail()">View Details</button>
+      </div>
+      -->
+
+    </div>
+    <div class="pane padded-more sidebar">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<!--
+<div *ngIf="selectedSeccion">
+  <seccion-detalle [seccion]="selectedSeccion"></seccion-detalle>
+</div>
+-->
+
+
+

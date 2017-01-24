@@ -1,0 +1,37 @@
+<div *ngIf="seccion">
+
+  <header class="" *ngIf="user">
+    <div class="toolbar-actions">
+      <div class="btn-group">
+        <button class="btn btn-default" [routerLink]="['/tutorial/edit/', seccion.id]">
+          <span class="icon icon-pencil icon-text"></span>
+          Editar
+        </button>
+        <button class="btn btn-default"  (click)="agregarSubseccion()">
+          <span class="icon icon-plus icon-text"></span>
+          Agregar Subseccion
+        </button>
+      </div>
+
+      <button class="btn btn-negative pull-right" (click)="delete()">
+        Eliminar
+      </button>
+    </div>
+    <br>
+  </header>
+
+
+  <div id="articulo">
+    <h3>{{seccion.titulo}}</h3>
+    <!--<p>{{seccion.contenido}}</p>-->
+
+    <div [innerHTML]="seccion.contenido"></div>
+  </div>
+
+
+  <!--
+  <button (click)="goBack()">Back</button>
+  <input [(ngModel)]="seccion.contenido" placeholder="name"/>
+  <button (click)="save()">Save</button>
+  -->
+</div>

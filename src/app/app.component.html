@@ -1,3 +1,44 @@
-<h1>
-  {{title}}
-</h1>
+<div class="window" xmlns="http://www.w3.org/1999/html">
+  <!-- .toolbar-header sits at the top of your app -->
+  <header class="toolbar toolbar-header">
+    <h1 class="title">
+      Fibras opticas
+      <span class="pull-right btn btn-default" [routerLink]="['/login']">
+        <span *ngIf="usuario" class="pull-right">{{usuario.nombre}} - Logout</span>
+        <span *ngIf="!usuario" class="pull-right">Login</span>
+      </span>
+    </h1>
+  </header>
+  <alert></alert>
+  <!-- Your app's content goes inside .window-content -->
+  <div class="window-content">
+    <div class="pane-group">
+      <div class="pane pane-sm sidebar">
+        <nav class="nav-group">
+          <h5 class="nav-group-title">Menu</h5>
+          <span class="nav-group-item">
+            <span class="icon icon-home"></span>
+            Inicio
+          </span>
+          <span class="nav-group-item" routerLink="/tutorial" routerLinkActive="active">
+            <span class="icon icon-book-open"></span>
+            Tutorial
+          </span>
+
+          <span class="nav-group-item" routerLink="/simulador" routerLinkActive="active">
+            <span class="icon icon-light-up"></span>
+            Simulador
+          </span>
+          <span class="nav-group-item" routerLink="/evaluacion" routerLinkActive="active">
+            <span class="icon icon-window"></span>
+            Evaluacion
+          </span>
+        </nav>
+      </div>
+      <div class="pane">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
+

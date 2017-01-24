@@ -1,0 +1,22 @@
+<div *ngIf="seccion">
+  <h4 [hidden]="seccion.id>0">Nueva Seccion</h4>
+  <h4 [hidden]="seccion.id===0">Editar Seccion</h4>
+  <div class="form-group">
+    <label>Nombre</label>
+    <input type="text" class="form-control" [(ngModel)]="seccion.titulo" placeholder="Nombre de la seccion" name="titulo">
+  </div>
+  <div class="form-group">
+    <label>Contenido</label>
+    <!-- <textarea class="form-control" [(ngModel)]="seccion.contenido" placeholder="Contenido de la seccion" name="contenido"></textarea>-->
+    <ckeditor
+      [(ngModel)]="seccion.contenido"
+      [config]="{extraPlugins:'base64image'}"
+      (change)="onChange($event)"
+      debounce="500">
+    </ckeditor>
+  </div>
+  <div class="form-actions">
+    <button class="btn btn-form btn-primary" (click)="guardar()">Guardar</button>
+    <button class="btn btn-form btn-default" (click)="cancelar();$event.stopPropagation()">Cancelar</button>
+  </div>
+</div>

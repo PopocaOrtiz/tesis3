@@ -1,0 +1,39 @@
+<div>
+  <div class="pane-group">
+    <div class="pane sidebar pane-sm pane-one-fourth" >
+      <nav class="nav-group">
+        <h5 class="nav-group-title">Opciones</h5>
+        <span [routerLink]="['preguntas']"
+              (click)="onSelect('preguntas')"
+              [class.active]="opcion === 'preguntas'"
+              class="nav-group-item"
+              *ngIf="user">
+          <span class="icon icon-home"></span>
+          Preguntas
+          <br>
+        </span>
+        <span [routerLink]="['nueva']"
+              (click)="onSelect('nueva')"
+              [class.active]="opcion === 'nueva'"
+              class="nav-group-item"
+              *ngIf="user">
+          <span class="icon icon-home"></span>
+          Nueva evaluacion
+          <br>
+        </span>
+        <span [routerLink]="['resultados']"
+              (click)="onSelect('resultados')"
+              [class.active]="opcion === 'resultados'"
+              class="nav-group-item"
+              *ngIf="user">
+          <span class="icon icon-home"></span>
+          Resultados Evaluacion
+          <br>
+        </span>
+      </nav>
+    </div>
+    <div class="pane">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

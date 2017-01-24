@@ -1,0 +1,34 @@
+<div class="pane-group">
+  <div class="pane padded-more">
+    <header class="" *ngIf="user">
+      <div class="toolbar-actions">
+        <div class="btn-group">
+          <button class="btn btn-default" [routerLink]="['new']" (click)="onSelect(null)">
+            <span class="icon icon-plus icon-text"></span>
+            Nueva pregunta
+          </button>
+        </div>
+      </div>
+    </header>
+    <table class="table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Pregunta</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pregunta of preguntas"
+            [routerLink]="['view', pregunta.id]"
+            (click)="onSelect(pregunta)"
+            [class.active]="pregunta === selectedPregunta">
+          <td>{{pregunta.id}}</td>
+          <td>{{pregunta.titulo}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pane padded-more" [hidden]="!selectedPregunta">
+    <router-outlet></router-outlet>
+  </div>
+</div>

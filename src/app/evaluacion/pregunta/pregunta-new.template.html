@@ -1,0 +1,32 @@
+<div *ngIf="pregunta">
+  <h4 [hidden]="pregunta.id">Nueva Pregunta</h4>
+  <h4 [hidden]="!pregunta.id">Editar Pregunta</h4>
+  <div class="form-group">
+    <label>Pregunta</label>
+    <input type="text" class="form-control" [(ngModel)]="pregunta.titulo" placeholder="Escribe la pregunta" name="titulo">
+  </div>
+  <div class="form-group">
+    <label>Contenido</label>
+    <ckeditor
+      [(ngModel)]="pregunta.contenido"
+      [config]="{}"
+      (change)="onChange($event)"
+      debounce="500">
+    </ckeditor>
+  </div>
+  <div class="form-group">
+    <label>Tipo</label>
+    <select class="form-control" [(ngModel)]="pregunta.tipo">
+      <option value="1">Libre</option>
+      <option value="2">Opcion Multiple</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="pregunta.tipo==2">
+    <label>Opciones</label>
+    <textarea class="form-control" [(ngModel)]="pregunta.inputOpciones" placeholder="Ingresa una opcion por linea, la primera linea es la opcion correcta"></textarea>
+  </div>
+  <div class="form-actions">
+    <button class="btn btn-form btn-primary" (click)="guardar()">Guardar</button>
+    <button class="btn btn-form btn-default" (click)="cancelar();$event.stopPropagation()">Cancelar</button>
+  </div>
+</div>

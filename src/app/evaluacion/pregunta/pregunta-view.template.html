@@ -1,0 +1,28 @@
+<div *ngIf="pregunta">
+
+  <header class="" *ngIf="user">
+    <div class="toolbar-actions">
+      <div class="btn-group">
+        <button class="btn btn-default" [routerLink]="['/evaluacion/preguntas/edit', pregunta.id]">
+          <span class="icon icon-pencil icon-text"></span>
+          Editar
+        </button>
+      </div>
+
+      <button class="btn btn-negative pull-right" (click)="delete()">
+        Eliminar
+      </button>
+    </div>
+  </header>
+
+  <h3>{{pregunta.titulo}}</h3>
+  <div [innerHTML]="pregunta.contenido"></div>
+
+  <div *ngIf="pregunta.tipo==2">
+    <ul>
+      <li *ngFor="let opcion of pregunta.opciones; let index = index">
+        <span [class.bold]="index == 0">{{opcion}}</span>
+      </li>
+    </ul>
+  </div>
+</div>

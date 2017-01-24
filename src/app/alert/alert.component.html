@@ -1,0 +1,14 @@
+<div *ngIf="message"
+     [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">
+    {{message.text}}
+</div>
+
+<style>
+    .alert{
+        background-color: #dd4545;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        padding: 5px 0px 5px;
+    }
+</style>
