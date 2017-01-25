@@ -54,15 +54,15 @@ export class SimuladorComponent implements OnInit {
     switch (tipo){
       case 'repetidor':
         nombre = 'Repetidor';
-        imagen = "../assets/img/repetidor.png";
+        imagen = "/fibras/assets/img/repetidor.png";
         break;
       case 'emisor':
         nombre = 'Emisor de luz';
-        imagen = "../assets/img/emisor.png";
+        imagen = "/fibras/assets/img/emisor.png";
         break;
       case 'receptor':
         nombre = 'Receptor de luz';
-        imagen = "../assets/img/receptor.png";
+        imagen = "/fibras/assets/img/receptor.png";
         break;
     }
 
@@ -300,7 +300,7 @@ export class SimuladorComponent implements OnInit {
             key: "1",
             name: "Repetidor",
             category: "repetidor",
-            source: "../assets/img/repetidor.png",
+            source: "/fibras/assets/img/repetidor.png",
             esElementoRed : true //conector, receptor, repetidor
           },
           {
@@ -308,14 +308,14 @@ export class SimuladorComponent implements OnInit {
             //parent: "1",
             name: "Emisor de luz",
             category: "emisor",
-            source: "../assets/img/emisor.png",
+            source: "/fibras/assets/img/emisor.png",
           },
           {
             key: "2",
             //parent: "1",
             name: "Receptor de luz",
             category: "receptor",
-            source: "../assets/img/receptor.png",
+            source: "/fibras/assets/img/receptor.png",
           }
         ];
 
