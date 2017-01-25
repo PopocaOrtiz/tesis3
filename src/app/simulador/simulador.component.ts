@@ -24,7 +24,8 @@ export class SimuladorComponent implements OnInit {
   temaTutorial : string;
   dataLinkSelected : any;
 
-  constructor(private dataService : DataService) {
+  constructor(private dataService : DataService,
+              private seccionService: DataService) {
   }
 
   guardar(){
@@ -37,7 +38,11 @@ export class SimuladorComponent implements OnInit {
 
   elementoSeleccionado(key : string){
 
-    this.temaTutorial = "Prueba de contenido de mensaje";
+    this.seccionService.get(13)
+      .subscribe(seccion =>{
+          let contenido = seccion.json().contenido;
+          this.temaTutorial = contenido;
+      });
 
     for(let node of this.diagrama.model.nodeDataArray)
       this.diagrama.model.setDataProperty(node, "highlight", false);
@@ -349,6 +354,7 @@ export class SimuladorComponent implements OnInit {
   ngOnInit() : void{
     this.mensaje = "Listo";
     this.dataService.setResource('/simulaciones');
+    this.seccionService.setResource('/tutorial');
   }
 
   /*

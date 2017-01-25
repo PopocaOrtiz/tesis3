@@ -2,8 +2,7 @@
   <div class="pane-group">
     <div class="pane padded-more">
       <div #myDiagramDiv2 style="width:800px; height:500px; background-color: whiteSmoke; margin:auto"></div>
-      <div style="width:800px;background-color: silver; margin:auto">
-        {{temaTutorial}}
+      <div [innerHTML]="temaTutorial" style="width: 800px;margin: auto;margin-top: 40px;font-size: 18px;text-align: justify;margin-bottom: 40px;" >
       </div>
       <div style="text-align:center">
         <button (click)="iniciar()" class="btn btn-default">Iniciar</button>
