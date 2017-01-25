@@ -23,9 +23,21 @@
   <script>
       //go = require("./app/assets/js/go");
   </script>
+
+  <script>
+      // See http://www.backalleycoder.com/2016/05/13/sghpa-the-single-page-app-hack-for-github-pages/
+      (function(){
+          var redirect = sessionStorage.redirect;
+          delete sessionStorage.redirect;
+          if (redirect && redirect != location.href) {
+              history.replaceState(null, null, redirect);
+          }
+      })();
+  </script>
+
 <link href="styles.6ead7318b300ca290934.bundle.css" rel="stylesheet"></head>
 <body>
   <app-root>Loading...</app-root>
   <app-simulador>Cargando...</app-simulador>
-<script type="text/javascript" src="inline.bfae98737161a3fb44ba.bundle.js"></script><script type="text/javascript" src="main.1d669c8acd4573825dd3.bundle.js"></script></body>
+<script type="text/javascript" src="inline.ae0ce319306b514458d8.bundle.js"></script><script type="text/javascript" src="main.68fa74a77ef3eeec6a85.bundle.js"></script></body>
 </html>
