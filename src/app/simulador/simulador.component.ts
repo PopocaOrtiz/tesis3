@@ -59,15 +59,15 @@ export class SimuladorComponent implements OnInit {
     switch (tipo){
       case 'repetidor':
         nombre = 'Repetidor';
-        imagen = "/fibras/assets/img/repetidor.png";
+        imagen = "/tesis3/assets/img/repetidor.png";
         break;
       case 'emisor':
         nombre = 'Emisor de luz';
-        imagen = "/fibras/assets/img/emisor.png";
+        imagen = "/tesis3/assets/img/emisor.png";
         break;
       case 'receptor':
         nombre = 'Receptor de luz';
-        imagen = "/fibras/assets/img/receptor.png";
+        imagen = "/tesis3/assets/img/receptor.png";
         break;
     }
 
