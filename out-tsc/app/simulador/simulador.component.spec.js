@@ -18,4 +18,4 @@ describe('SimuladorComponent', function () {
         expect(component).toBeTruthy();
     });
 });
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/app/simulador/simulador.component.spec.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/app/simulador/simulador.component.spec.js.map

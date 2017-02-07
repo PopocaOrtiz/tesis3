@@ -5,4 +5,4 @@
 export var environment = {
     production: false
 };
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/environments/environment.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/environments/environment.js.map

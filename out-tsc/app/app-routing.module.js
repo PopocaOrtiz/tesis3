@@ -22,6 +22,8 @@ import { PreguntaEditComponent } from "./evaluacion/pregunta/pregunta-edit.compo
 import { PreguntaNewComponent } from "./evaluacion/pregunta/pregunta-new.component";
 import { EvaluacionNewComponent } from "./evaluacion/evaluacion/evaluacion-new.component";
 import { SimuladorComponent } from "./simulador/simulador.component";
+import { ListadoComponent } from "./usuarios/listado/listado.component";
+import { ResultadosComponent } from "./evaluacion/resultados/resultados.component";
 var routes = [
     {
         path: '',
@@ -81,11 +83,19 @@ var routes = [
                 path: "nueva",
                 component: EvaluacionNewComponent
             },
+            {
+                path: "resultados",
+                component: ResultadosComponent
+            }
         ]
     },
     {
         path: 'simulador',
         component: SimuladorComponent,
+    },
+    {
+        path: 'usuarios',
+        component: ListadoComponent
     }
 ];
 export var AppRoutingModule = (function () {
@@ -100,4 +110,4 @@ export var AppRoutingModule = (function () {
     ], AppRoutingModule);
     return AppRoutingModule;
 }());
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/app/app-routing.module.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/app/app-routing.module.js.map

@@ -23,12 +23,15 @@ export var PreguntaEditComponent = (function () {
         if (this.usuariosService.isLoged()) {
             this.user = this.usuariosService.isLoged();
         }
-        this.preguntasService.setResource("/preguntas");
-        this.route.params
-            .switchMap(function (params) { return _this.preguntasService.get(+params['id']); })
+        this.preguntasService.setResource("preguntas");
+        this.cambioUrlSubscription = this.route.params
+            .switchMap(function (params) { return _this.preguntasService.get(params['id']); })
             .subscribe(function (pregunta) {
-            _this.pregunta = pregunta.json();
+            _this.pregunta = pregunta;
         });
+    };
+    PreguntaEditComponent.prototype.ngOnDestroy = function () {
+        this.cambioUrlSubscription.unsubscribe();
     };
     PreguntaEditComponent.prototype.onChange = function () {
         console.log(this.pregunta.contenido);
@@ -37,8 +40,10 @@ export var PreguntaEditComponent = (function () {
         var _this = this;
         var opciones = this.pregunta.inputOpciones;
         this.pregunta.opciones = opciones.split("\n");
-        this.preguntasService.update(this.pregunta.id, this.pregunta)
-            .subscribe(function () { return _this.router.navigate(['evaluacion/preguntas/view', _this.pregunta.id]); });
+        this.preguntasService.update(this.pregunta.id.toString(), this.pregunta)
+            .subscribe(function () {
+            return _this.router.navigate(['evaluacion/preguntas/view', _this.pregunta.id]);
+        });
     };
     PreguntaEditComponent.prototype.cancelar = function () {
         this.router.navigate(['evaluacion/preguntas/view', this.pregunta.id]);
@@ -54,4 +59,4 @@ export var PreguntaEditComponent = (function () {
     ], PreguntaEditComponent);
     return PreguntaEditComponent;
 }());
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/app/evaluacion/pregunta/pregunta-edit.component.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/app/evaluacion/pregunta/pregunta-edit.component.js.map

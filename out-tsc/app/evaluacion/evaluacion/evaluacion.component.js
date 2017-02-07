@@ -32,4 +32,4 @@ export var EvaluacionComponent = (function () {
     ], EvaluacionComponent);
     return EvaluacionComponent;
 }());
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/app/evaluacion/evaluacion/evaluacion.component.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/app/evaluacion/evaluacion/evaluacion.component.js.map

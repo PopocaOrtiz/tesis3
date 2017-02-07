@@ -1,3 +1,6 @@
+/**
+ * @deprecated
+ */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -33,4 +36,4 @@ export var EvaluacionService = (function () {
     ], EvaluacionService);
     return EvaluacionService;
 }());
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/app/evaluacion/evaluacion/evaluacion.service.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/app/evaluacion/evaluacion/evaluacion.service.js.map

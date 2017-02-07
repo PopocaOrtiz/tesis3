@@ -14,4 +14,4 @@ import 'core-js/es6/set';
 import 'core-js/es6/reflect';
 import 'core-js/es7/reflect';
 import 'zone.js/dist/zone';
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/polyfills.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/polyfills.js.map

@@ -64,4 +64,4 @@ export var SeccionService = (function () {
     ], SeccionService);
     return SeccionService;
 }());
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/app/tutorial/seccion/seccion.service.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/app/tutorial/seccion/seccion.service.js.map

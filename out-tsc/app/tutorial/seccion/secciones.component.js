@@ -26,7 +26,7 @@ export var SeccionesComponent = (function () {
             for (var _i = 0, secciones_1 = secciones; _i < secciones_1.length; _i++) {
                 var seccion = secciones_1[_i];
                 if (seccion.seccion_padre == seccionPadre.id) {
-                    seccion.id = parseInt(seccion.id.toString().replace("Tutorial ", ""));
+                    //seccion.id = parseInt(seccion.id.toString().replace("Tutorial ",""));
                     seccion.subSecciones = agregarSubSecciones(seccion, secciones);
                     tmpSecciones.push(seccion);
                 }
@@ -34,7 +34,7 @@ export var SeccionesComponent = (function () {
             return tmpSecciones;
         };
         this.tutorialService.list().subscribe(function (response) {
-            var secciones = response.json();
+            var secciones = response;
             //creamos el arbol de secciones empezando por la principal id:0
             var seccionPrincipal = {
                 id: 0,
@@ -47,7 +47,7 @@ export var SeccionesComponent = (function () {
     };
     SeccionesComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.tutorialService.setResource("/tutorial");
+        this.tutorialService.setResource("tutorial");
         if (this.usuariosService.isLoged()) {
             this.user = this.usuariosService.isLoged();
         }
@@ -77,4 +77,4 @@ export var SeccionesComponent = (function () {
     ], SeccionesComponent);
     return SeccionesComponent;
 }());
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/app/tutorial/seccion/secciones.component.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/app/tutorial/seccion/secciones.component.js.map

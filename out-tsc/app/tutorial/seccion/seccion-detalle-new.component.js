@@ -60,4 +60,4 @@ export var SeccionDetalleNewComponent = (function () {
     ], SeccionDetalleNewComponent);
     return SeccionDetalleNewComponent;
 }());
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/app/tutorial/seccion/seccion-detalle-new.component.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/app/tutorial/seccion/seccion-detalle-new.component.js.map

@@ -30,9 +30,7 @@ export var LoginComponent = (function () {
         var _this = this;
         this.loading = true;
         this.authenticationService.login(this.model.username, this.model.password)
-            .subscribe(function (response) {
-            debugger;
-            var user = response.json();
+            .subscribe(function (user) {
             if (user.length) {
                 _this.authenticationService.setIsLoged(user[0]);
                 _this.router.navigate([_this.returnUrl]);
@@ -52,4 +50,4 @@ export var LoginComponent = (function () {
     ], LoginComponent);
     return LoginComponent;
 }());
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/app/usuarios/login.component.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/app/usuarios/login.component.js.map

@@ -1,3 +1,8 @@
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,57 +13,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-export var PreguntasService = (function () {
-    function PreguntasService(http) {
-        this.http = http;
-        this.preguntasUrl = 'api/preguntas'; // URL to web api
-        this.headers = new Headers({ 'Content-Type': 'application/json' });
+import { DataService } from "../../data.service";
+export var PreguntasService = (function (_super) {
+    __extends(PreguntasService, _super);
+    function PreguntasService() {
+        _super.apply(this, arguments);
+        this.resource = "preguntas";
     }
-    PreguntasService.prototype.getPreguntas = function () {
-        return this.http.get(this.preguntasUrl)
-            .toPromise()
-            .then(function (response) { return response.json().data; })
-            .catch(this.handleError);
-    };
-    PreguntasService.prototype.getPregunta = function (id) {
-        var url = this.preguntasUrl + "/" + id;
-        return this.http.get(url)
-            .toPromise()
-            .then(function (response) { return response.json().data; })
-            .catch(this.handleError);
-    };
-    PreguntasService.prototype.update = function (pregunta) {
-        var url = this.preguntasUrl + "/" + pregunta.id;
-        return this.http
-            .put(url, JSON.stringify(pregunta), { headers: this.headers })
-            .toPromise()
-            .then(function () { return pregunta; })
-            .catch(this.handleError);
-    };
-    PreguntasService.prototype.create = function (pregunta) {
-        return this.http
-            .post(this.preguntasUrl, JSON.stringify(pregunta), { headers: this.headers })
-            .toPromise()
-            .then(function (res) { return res.json().data; })
-            .catch(this.handleError);
-    };
-    PreguntasService.prototype.delete = function (id) {
-        var url = this.preguntasUrl + "/" + id;
-        return this.http.delete(url, { headers: this.headers })
-            .toPromise()
-            .then(function () { return null; })
-            .catch(this.handleError);
-    };
-    PreguntasService.prototype.handleError = function (error) {
-        console.error('An error occurred', error); // for demo purposes only
-        return Promise.reject(error.message || error);
-    };
     PreguntasService = __decorate([
+        //There are scores of operators like toPromise that extend Observable with useful capabilities.
         Injectable(), 
-        __metadata('design:paramtypes', [Http])
+        __metadata('design:paramtypes', [])
     ], PreguntasService);
     return PreguntasService;
-}());
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/app/evaluacion/pregunta/preguntas.service.js.map
+}(DataService));
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/app/evaluacion/pregunta/preguntas.service.js.map

@@ -19,9 +19,9 @@ export var PreguntasComponent = (function () {
     }
     PreguntasComponent.prototype.getPreguntas = function () {
         var _this = this;
-        this.preguntasService.setResource("/preguntas");
+        this.preguntasService.setResource("preguntas");
         this.preguntasService.list().subscribe(function (preguntas) {
-            _this.preguntas = preguntas.json();
+            _this.preguntas = preguntas;
         });
     };
     PreguntasComponent.prototype.onSelect = function (pregunta) {
@@ -58,4 +58,4 @@ export var PreguntasComponent = (function () {
     ], PreguntasComponent);
     return PreguntasComponent;
 }());
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/app/evaluacion/pregunta/preguntas.component.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/app/evaluacion/pregunta/preguntas.component.js.map

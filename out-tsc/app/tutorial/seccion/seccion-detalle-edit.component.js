@@ -27,12 +27,15 @@ export var SeccionDetalleEditComponent = (function () {
         if (this.usuariosService.isLoged()) {
             this.user = this.usuariosService.isLoged();
         }
-        this.route.params
-            .switchMap(function (params) { return _this.seccionService.get(+params['id']); })
+        this.cambioUrlSubscription = this.route.params
+            .switchMap(function (params) { return _this.seccionService.get(params['id']); })
             .subscribe(function (seccion) {
-            _this.seccion = seccion.json();
-            _this.seccion.id = parseInt(_this.seccion.id.toString().replace("Tutorial ", ""));
+            _this.seccion = seccion;
+            //this.seccion.id = parseInt(this.seccion.id.toString().replace("Tutorial ",""));
         });
+    };
+    SeccionDetalleEditComponent.prototype.ngOnDestroy = function () {
+        this.cambioUrlSubscription.unsubscribe();
     };
     SeccionDetalleEditComponent.prototype.onChange = function () {
         console.log(this.seccion.contenido);
@@ -43,7 +46,8 @@ export var SeccionDetalleEditComponent = (function () {
             titulo: this.seccion.titulo,
             contenido: this.seccion.contenido
         };
-        this.seccionService.update(this.seccion.id, data)
+        var id = parseInt(this.seccion.id.toString().replace("Tutorial ", ""));
+        this.seccionService.update(id.toString(), data)
             .subscribe(function () { return _this.router.navigate(['/tutorial/view/', _this.seccion.id]); });
     };
     SeccionDetalleEditComponent.prototype.cancelar = function () {
@@ -63,4 +67,4 @@ export var SeccionDetalleEditComponent = (function () {
     ], SeccionDetalleEditComponent);
     return SeccionDetalleEditComponent;
 }());
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/app/tutorial/seccion/seccion-detalle-edit.component.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/app/tutorial/seccion/seccion-detalle-edit.component.js.map

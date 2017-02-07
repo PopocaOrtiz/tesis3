@@ -24,30 +24,33 @@ export var SeccionDetalleComponent = (function () {
     }
     SeccionDetalleComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.seccionService.setResource('/tutorial');
+        this.seccionService.setResource('tutorial');
         if (this.usuariosService.isLoged()) {
             this.user = this.usuariosService.isLoged();
         }
-        this.route.params
-            .switchMap(function (params) { return _this.seccionService.get(+params['id']); })
+        this.cambioUrlSubscription = this.route.params
+            .switchMap(function (params) { return _this.seccionService.get(params['id']); })
             .subscribe(function (seccion) {
-            _this.seccion = seccion.json();
-            _this.seccion.id = parseInt(_this.seccion.id.toString().replace("Tutorial ", ""));
+            _this.seccion = seccion;
+            //this.seccion.id = parseInt(this.seccion.id.toString().replace("Tutorial ",""));
         });
+    };
+    SeccionDetalleComponent.prototype.ngOnDestroy = function () {
+        this.cambioUrlSubscription.unsubscribe();
     };
     SeccionDetalleComponent.prototype.goBack = function () {
         this.location.back();
     };
     SeccionDetalleComponent.prototype.save = function () {
         var _this = this;
-        this.seccionService.setResource('/tutorial');
-        this.seccionService.update(this.seccion.id, this.seccion)
+        this.seccionService.setResource('tutorial');
+        this.seccionService.update(this.seccion.id.toString(), this.seccion)
             .subscribe(function () { return _this.goBack(); });
     };
     SeccionDetalleComponent.prototype.delete = function () {
         var _this = this;
         if (confirm("Eliminar esta seccion?")) {
-            this.seccionService.setResource('/tutorial');
+            this.seccionService.setResource('tutorial');
             this.seccionService
                 .delete(this.seccion.id)
                 .subscribe(function () {
@@ -66,7 +69,7 @@ export var SeccionDetalleComponent = (function () {
             };
             if (!this.seccion.subSecciones)
                 this.seccion.subSecciones = [];
-            this.seccionService.setResource('/tutorial');
+            this.seccionService.setResource('tutorial');
             this.seccionService
                 .post(nuevaSubseccion)
                 .subscribe(function () {
@@ -89,4 +92,4 @@ export var SeccionDetalleComponent = (function () {
     ], SeccionDetalleComponent);
     return SeccionDetalleComponent;
 }());
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/app/tutorial/seccion/seccion-detalle.component.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/app/tutorial/seccion/seccion-detalle.component.js.map

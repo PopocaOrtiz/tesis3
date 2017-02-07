@@ -27,4 +27,4 @@ describe('AppComponent', function () {
         expect(compiled.querySelector('h1').textContent).toContain('app works!');
     }));
 });
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/app/app.component.spec.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/app/app.component.spec.js.map

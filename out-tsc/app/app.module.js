@@ -35,6 +35,9 @@ import { AuthGuard } from "./usuarios/auth.guard";
 import { AlertService } from "./alert/alert.service";
 import { UsuariosService } from "./usuarios/usuarios.service";
 import { DataService } from "./data.service";
+import { ListadoComponent } from './usuarios/listado/listado.component';
+import { ResultadosComponent } from './evaluacion/resultados/resultados.component';
+import { RespuestasService } from "./evaluacion/resultados/respuestas.service";
 export var AppModule = (function () {
     function AppModule() {
     }
@@ -54,7 +57,9 @@ export var AppModule = (function () {
                 PreguntaNewComponent,
                 PreguntaEditComponent,
                 AlertComponent,
-                LoginComponent
+                LoginComponent,
+                ListadoComponent,
+                ResultadosComponent
             ],
             imports: [
                 BrowserModule,
@@ -67,6 +72,7 @@ export var AppModule = (function () {
                 SeccionService,
                 PreguntasService,
                 EvaluacionService,
+                RespuestasService,
                 AuthGuard,
                 AlertService,
                 UsuariosService,
@@ -79,4 +85,4 @@ export var AppModule = (function () {
     ], AppModule);
     return AppModule;
 }());
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/app/app.module.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/app/app.module.js.map

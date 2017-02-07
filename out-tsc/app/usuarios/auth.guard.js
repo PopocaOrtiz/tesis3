@@ -28,4 +28,4 @@ export var AuthGuard = (function () {
     ], AuthGuard);
     return AuthGuard;
 }());
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/app/usuarios/auth.guard.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/app/usuarios/auth.guard.js.map

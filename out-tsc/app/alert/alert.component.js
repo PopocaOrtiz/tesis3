@@ -27,4 +27,4 @@ export var AlertComponent = (function () {
     ], AlertComponent);
     return AlertComponent;
 }());
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/app/alert/alert.component.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/app/alert/alert.component.js.map

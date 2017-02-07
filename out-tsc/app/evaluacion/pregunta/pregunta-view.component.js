@@ -23,11 +23,14 @@ export var PreguntaViewComponent = (function () {
         if (this.usuariosService.isLoged()) {
             this.user = this.usuariosService.isLoged();
         }
-        this.route.params
-            .switchMap(function (params) { return _this.preguntasService.get(+params['id']); })
+        this.cambioUrlSubscription = this.route.params
+            .switchMap(function (params) { return _this.preguntasService.get(params['id']); })
             .subscribe(function (pregunta) {
-            _this.pregunta = pregunta.json();
+            _this.pregunta = pregunta;
         });
+    };
+    PreguntaViewComponent.prototype.ngOnDestroy = function () {
+        this.cambioUrlSubscription.unsubscribe();
     };
     PreguntaViewComponent.prototype.delete = function () {
         var _this = this;
@@ -52,4 +55,4 @@ export var PreguntaViewComponent = (function () {
     ], PreguntaViewComponent);
     return PreguntaViewComponent;
 }());
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/app/evaluacion/pregunta/pregunta-view.component.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/app/evaluacion/pregunta/pregunta-view.component.js.map

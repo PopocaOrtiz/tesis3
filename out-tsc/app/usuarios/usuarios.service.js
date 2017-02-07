@@ -1,3 +1,8 @@
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9,19 +14,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Injectable } from '@angular/core';
 import { DataService } from "../data.service";
-export var UsuariosService = (function () {
-    function UsuariosService(dataService) {
-        this.dataService = dataService;
-        this.dataService.setResource("/usuarios");
+export var UsuariosService = (function (_super) {
+    __extends(UsuariosService, _super);
+    function UsuariosService() {
+        _super.apply(this, arguments);
+        this.resource = 'usuarios';
     }
     UsuariosService.prototype.login = function (name, password) {
         var data = {
             nombre: name,
             password: password
         };
-        this.dataService.setResource('/usuarios');
-        return this.dataService
-            .list(data);
+        return this.list(data, true);
     };
     UsuariosService.prototype.logout = function () {
         // remove user from local storage to log user out
@@ -41,10 +45,15 @@ export var UsuariosService = (function () {
         var stringDataUsuario = JSON.stringify(user);
         localStorage.setItem('currentUser', stringDataUsuario);
     };
+    UsuariosService.prototype.setIsEvaluado = function (user) {
+        user.evaluado = 'si';
+        this.setIsLoged(user);
+        return this.update(user.id.toString(), { evaluado: 'si' });
+    };
     UsuariosService = __decorate([
         Injectable(), 
-        __metadata('design:paramtypes', [DataService])
+        __metadata('design:paramtypes', [])
     ], UsuariosService);
     return UsuariosService;
-}());
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/app/usuarios/usuarios.service.js.map
+}(DataService));
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/app/usuarios/usuarios.service.js.map

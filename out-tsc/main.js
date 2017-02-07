@@ -7,4 +7,4 @@ if (environment.production) {
     enableProdMode();
 }
 platformBrowserDynamic().bootstrapModule(AppModule);
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/main.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/main.js.map

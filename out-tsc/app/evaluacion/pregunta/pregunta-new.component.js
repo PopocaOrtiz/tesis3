@@ -47,4 +47,4 @@ export var PreguntaNewComponent = (function () {
     ], PreguntaNewComponent);
     return PreguntaNewComponent;
 }());
-//# sourceMappingURL=C:/Users/user/Documents/GitHub/fibras/src/app/evaluacion/pregunta/pregunta-new.component.js.map
+//# sourceMappingURL=C:/Users/user/Documents/GitHub/tesis3/src/app/evaluacion/pregunta/pregunta-new.component.js.map
