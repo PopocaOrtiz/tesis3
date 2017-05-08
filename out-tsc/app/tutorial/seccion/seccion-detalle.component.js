@@ -7,11 +7,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
-import { ISeccion } from "./seccion.interface";
 import { UsuariosService } from '../../usuarios/usuarios.service';
 import { DataService } from "../../data.service";
 export var SeccionDetalleComponent = (function () {
@@ -29,7 +28,14 @@ export var SeccionDetalleComponent = (function () {
             this.user = this.usuariosService.isLoged();
         }
         this.cambioUrlSubscription = this.route.params
-            .switchMap(function (params) { return _this.seccionService.get(params['id']); })
+            .switchMap(function (params) {
+            if ('opcion' in params) {
+                if (params['opcion'] == 'refresh') {
+                    return _this.seccionService.get(params['id'], false);
+                }
+            }
+            return _this.seccionService.get(params['id']);
+        })
             .subscribe(function (seccion) {
             _this.seccion = seccion;
             //this.seccion.id = parseInt(this.seccion.id.toString().replace("Tutorial ",""));
@@ -51,10 +57,11 @@ export var SeccionDetalleComponent = (function () {
         var _this = this;
         if (confirm("Eliminar esta seccion?")) {
             this.seccionService.setResource('tutorial');
+            var id = parseInt(this.seccion.id.toString().replace("Tutorial ", ""));
             this.seccionService
-                .delete(this.seccion.id)
+                .delete(id)
                 .subscribe(function () {
-                _this.router.navigate(['/tutorial']);
+                _this.router.navigate(['/tutorial', { 'opcion': 'refresh' }]);
             });
         }
     };
@@ -77,10 +84,6 @@ export var SeccionDetalleComponent = (function () {
             });
         }
     };
-    __decorate([
-        Input(), 
-        __metadata('design:type', ISeccion)
-    ], SeccionDetalleComponent.prototype, "seccion", void 0);
     SeccionDetalleComponent = __decorate([
         Component({
             //moduleId: module.id,

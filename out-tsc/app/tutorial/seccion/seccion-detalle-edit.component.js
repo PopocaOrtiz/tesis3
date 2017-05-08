@@ -48,7 +48,7 @@ export var SeccionDetalleEditComponent = (function () {
         };
         var id = parseInt(this.seccion.id.toString().replace("Tutorial ", ""));
         this.seccionService.update(id.toString(), data)
-            .subscribe(function () { return _this.router.navigate(['/tutorial/view/', _this.seccion.id]); });
+            .subscribe(function () { return _this.router.navigate(['/tutorial/view/' + _this.seccion.id, { 'opcion': 'refresh' }]); });
     };
     SeccionDetalleEditComponent.prototype.cancelar = function () {
         this.router.navigate(['/tutorial/view/', this.seccion.id]);

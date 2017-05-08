@@ -8,19 +8,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { UsuariosService } from '../../usuarios/usuarios.service';
 import 'rxjs/add/operator/switchMap';
 import { DataService } from "../../data.service";
 export var SeccionesComponent = (function () {
-    function SeccionesComponent(route, router, usuariosService, tutorialService) {
-        this.route = route;
+    function SeccionesComponent(router, route, usuariosService, tutorialService) {
         this.router = router;
+        this.route = route;
         this.usuariosService = usuariosService;
         this.tutorialService = tutorialService;
     }
-    SeccionesComponent.prototype.getSecciones = function () {
+    SeccionesComponent.prototype.getSecciones = function (refresh) {
         var _this = this;
+        if (refresh === void 0) { refresh = false; }
         var agregarSubSecciones = function (seccionPadre, secciones) {
             var tmpSecciones = [];
             for (var _i = 0, secciones_1 = secciones; _i < secciones_1.length; _i++) {
@@ -33,7 +34,7 @@ export var SeccionesComponent = (function () {
             }
             return tmpSecciones;
         };
-        this.tutorialService.list().subscribe(function (response) {
+        this.tutorialService.list([], refresh).subscribe(function (response) {
             var secciones = response;
             //creamos el arbol de secciones empezando por la principal id:0
             var seccionPrincipal = {
@@ -51,9 +52,18 @@ export var SeccionesComponent = (function () {
         if (this.usuariosService.isLoged()) {
             this.user = this.usuariosService.isLoged();
         }
-        //this.getSecciones();
         this.cambioUrlSubscription = this.router.events.subscribe(function (val) {
-            _this.getSecciones();
+            if (val instanceof NavigationEnd) {
+                var recargar_1 = false;
+                _this.route.params.forEach(function (params) {
+                    if ("opcion" in params) {
+                        if (params['opcion'] == 'refresh') {
+                            recargar_1 = true;
+                        }
+                    }
+                });
+                _this.getSecciones(recargar_1);
+            }
         });
     };
     SeccionesComponent.prototype.ngOnDestroy = function () {
@@ -73,7 +83,7 @@ export var SeccionesComponent = (function () {
             styleUrls: ['./secciones.style.css'],
             templateUrl: './secciones.template.html'
         }), 
-        __metadata('design:paramtypes', [ActivatedRoute, Router, UsuariosService, DataService])
+        __metadata('design:paramtypes', [Router, ActivatedRoute, UsuariosService, DataService])
     ], SeccionesComponent);
     return SeccionesComponent;
 }());

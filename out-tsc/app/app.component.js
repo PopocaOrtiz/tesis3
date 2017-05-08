@@ -8,17 +8,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { UsuariosService } from "./usuarios/usuarios.service";
 export var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'app works!';
+    function AppComponent(usuariosService) {
+        this.usuariosService = usuariosService;
     }
+    AppComponent.prototype.ngOnInit = function () {
+        if (this.usuariosService.isLoged()) {
+            this.usuario = this.usuariosService.isLoged();
+            var nombre = this.usuario.nombre;
+            this.usuario.nombre = nombre.charAt(0).toUpperCase() + nombre.slice(1);
+        }
+    };
     AppComponent = __decorate([
         Component({
             selector: 'app-root',
             templateUrl: './app.component.html',
             styleUrls: ['./app.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [UsuariosService])
     ], AppComponent);
     return AppComponent;
 }());

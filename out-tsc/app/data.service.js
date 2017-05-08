@@ -52,11 +52,13 @@ export var DataService = (function () {
         var url = this.getEndPoint();
         this.loadDataLocal(url);
         if (data) {
-            var params = [];
-            for (var key in data) {
-                params.push(key + '=' + encodeURIComponent(data[key]));
+            if (data.length) {
+                var params = [];
+                for (var key in data) {
+                    params.push(key + '=' + encodeURIComponent(data[key]));
+                }
+                url = url + "?" + params.join("&");
             }
-            url = url + "?" + params.join("&");
         }
         //debugger;
         //si ya tenemos en memoria esta peticion evitamos volver a hacerla
@@ -76,19 +78,22 @@ export var DataService = (function () {
             return Observable.of(response.json());
         });
     };
-    DataService.prototype.get = function (id) {
+    DataService.prototype.get = function (id, loadOfMemory) {
         var _this = this;
+        if (loadOfMemory === void 0) { loadOfMemory = true; }
         var partsId = id.toString().split(" ");
         var newId = partsId[1];
         var url = this.getEndPoint();
         this.loadDataLocal(url);
         //si ya tenemos en memoria esta peticion evitamos volver a hacerla
-        if (url in this.dataSaved) {
-            for (var _i = 0, _a = this.dataSaved[url]; _i < _a.length; _i++) {
-                var item = _a[_i];
-                var idItem = item.id.toString().split(" ");
-                if (idItem[1] == newId)
-                    return Observable.of(item);
+        if (loadOfMemory) {
+            if (url in this.dataSaved) {
+                for (var _i = 0, _a = this.dataSaved[url]; _i < _a.length; _i++) {
+                    var item = _a[_i];
+                    var idItem = item.id.toString().split(" ");
+                    if (idItem[1] == newId)
+                        return Observable.of(item);
+                }
             }
         }
         var fullUrl = url + '/' + newId;
@@ -102,20 +107,28 @@ export var DataService = (function () {
     };
     DataService.prototype.post = function (data) {
         var url = this.getEndPoint();
-        //guardamos en memoria local
-        if (localStorage.getItem(url)) {
-            var previousData = JSON.parse(localStorage.getItem(url));
-            previousData.push(data);
-            localStorage.setItem(url, JSON.stringify(previousData));
-        }
-        else {
-            localStorage.setItem(url, JSON.stringify([data]));
+        if ('id' in data) {
+            //guardamos en memoria local
+            if (localStorage.getItem(url)) {
+                var previousData = JSON.parse(localStorage.getItem(url));
+                previousData.push(data);
+                localStorage.setItem(url, JSON.stringify(previousData));
+            }
+            else {
+                localStorage.setItem(url, JSON.stringify([data]));
+            }
         }
         return this.http
             .post(url, JSON.stringify(data), this.getRequestOptions());
     };
     DataService.prototype.delete = function (id) {
         var url = this.getEndPoint() + '/' + id;
+        for (var key in this.dataSaved) {
+            if (key == url) {
+                this.dataSaved.splice(key, 1);
+            }
+        }
+        localStorage.removeItem(url);
         return this.http.delete(url, this.getRequestOptions());
     };
     DataService.prototype.update = function (id, data) {

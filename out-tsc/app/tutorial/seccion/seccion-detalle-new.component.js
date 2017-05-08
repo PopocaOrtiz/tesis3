@@ -25,7 +25,7 @@ export var SeccionDetalleNewComponent = (function () {
         };
     }
     SeccionDetalleNewComponent.prototype.ngOnInit = function () {
-        this.seccionService.setResource("/tutorial");
+        this.seccionService.setResource("tutorial");
         if (this.usuariosService.isLoged()) {
             this.user = this.usuariosService.isLoged();
         }
@@ -41,7 +41,7 @@ export var SeccionDetalleNewComponent = (function () {
             seccion_padre: this.seccion.seccion_padre ? this.seccion.seccion_padre : '0'
         };
         this.seccionService.post(data)
-            .subscribe(function () { return _this.router.navigate(['/tutorial']); });
+            .subscribe(function () { return _this.router.navigate(['/tutorial', { opcion: 'refresh' }]); });
     };
     SeccionDetalleNewComponent.prototype.cancelar = function () {
         this.router.navigate(['/tutorial']);
